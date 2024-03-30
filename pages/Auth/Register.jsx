@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../../components/context/userContext';
 import "./LoginRegister.css"
 import { useNavigate } from 'react-router-dom';
-import AvatarUpload from '../../components/buttons/avatarUpload';
+import AvatarUpload from '../../components/buttons/AvatarUpload';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
