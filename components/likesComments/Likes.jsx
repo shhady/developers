@@ -33,6 +33,6 @@ export default function Likes({project, setChosenCard}) {
     }
     const userLiked = likes.find(likeObj => likeObj.userId === user?._id)
   return (
-    <div onClick={user ? handleLikes : undefined} className='likeAndCounter'>{userLiked ? <FavoriteIcon/>:<FavoriteBorderIcon/>} {likes.length}</div>
+    <div onClick={user ? handleLikes : undefined} className='likeAndCounter'>{userLiked ? <FavoriteIcon/>:<FavoriteBorderIcon/>} {likes?.length}</div>
   )
 }
