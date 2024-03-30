@@ -1,5 +1,6 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react"
 const backendURL = import.meta.env.VITE_URL_BACKEND_DEVELOPMENT
+console.log(backendURL);
 const getToken = () => {
     const tokenString = localStorage.getItem('token');
 
