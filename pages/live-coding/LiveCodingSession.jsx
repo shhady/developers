@@ -16,7 +16,7 @@ export default function LiveCodingSession() {
     };
     useEffect(()=>{
         if(data){
-            ws.emit('join-room', {roomId:data?.roomId, peerId:user._id});
+            ws.emit('join-room', {roomId:data?.roomId, peerId:user?._id});
         }
     },[data])
     useEffect(() => {

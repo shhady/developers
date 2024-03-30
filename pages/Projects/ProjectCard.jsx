@@ -24,34 +24,34 @@ export default function ProjectCard({project, isFetching, myId}) {
              <CardSkeleton />
            </Box>
             : <div className='card'>
-           <Link to={`/profile/${project.user._id}`}>
+           <Link to={`/profile/${project?.user._id}`}>
           {myId ? (''):(<Typography gutterBottom variant="h5" component="div" className='projectUserDetails'>
-            <img src={project.user.avatar} alt='profile' style={{width:"35px", height:"35px", borderRadius:"50%", marginRight:"10px"}}/>
-            {project.user.userName}
+            <img src={project?.user.avatar} alt='profile' style={{width:"35px", height:"35px", borderRadius:"50%", marginRight:"10px"}}/>
+            {project?.user.userName}
              </Typography>)} 
              </Link>
-             <Link to={`/projects/${project.name}?id=${project._id}`} state={{ myData: project }} className={`link${theme}`}>
+             <Link to={`/projects/${project?.name}?id=${project?._id}`} state={{ myData: project }} className={`link${theme}`}>
            <img
              className='imgCard'
              alt="no img"
-             src={project.image}
+             src={project?.image}
            />
            <Typography gutterBottom variant="h5" component="div">
           
-            {project.name}
+            {project?.name}
              
              </Typography>
            <div className='card-text'>
            
              <div className='card-description'>
-             {project.description.slice(0, 90)}...
+             {project?.description.slice(0, 90)}...
              </div>
            </div>
            </Link> 
            
            <div className='card-text start'>
-           <div>Studied at: {project.user.education}</div> 
-           <div>Type: {project.projectType}</div>
+           <div>Studied at: {project?.user.education}</div> 
+           <div>Type: {project?.projectType}</div>
            </div>
            <div className='card-text start'>
                <Likes project={project} setChosenCard={setChosenCard}/>
@@ -59,8 +59,8 @@ export default function ProjectCard({project, isFetching, myId}) {
            <div className='card-icons'>
              <Button size="small"><GitHubIcon fontSize="small" sx={{ mr: 1 }}/></Button>
              <Button size="small"><LinkIcon  sx={{ mr: 1 }}/></Button> 
-            {user?._id === project.user._id && <> <EditButton project={project}/>
-            <DeleteButton projectId={project._id}/>
+            {user?._id === project?.user._id && <> <EditButton project={project}/>
+            <DeleteButton projectId={project?._id}/>
             </>}
            </div>
          </div>}

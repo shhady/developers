@@ -21,7 +21,7 @@ export default function Profile() {
     
     useEffect(() => {
       if (data) {
-        if (user._id === id) {
+        if (user?._id === id) {
           setUserToShow(user);
         } else {
           setUserToShow(data[0].user);

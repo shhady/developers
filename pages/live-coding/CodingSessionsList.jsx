@@ -16,7 +16,7 @@ export default function CodingSessionsList() {
     useEffect(() => {
       // Filter the allData only when allData and user are defined.
       if (data && user) {
-        const newData = data.filter(event => event.user._id !== user?._id);
+        const newData = data.filter(event => event?.user._id !== user?._id);
         setFilteredData(newData);
       }
     }, [data, user]);
