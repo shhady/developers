@@ -58,22 +58,22 @@ export const liveCodingApi = createApi({
             }),
             invalidatesTags: ['LiveCoding']
         }),
-        updateProjectInteraction: builder.mutation({
-            query: ({id, ...rest}) =>({
-                url: `/projects/likes/comments/${id}`,
-                method: 'PUT',
-                body: rest
-            }),
+        // updateProjectInteraction: builder.mutation({
+        //     query: ({id, ...rest}) =>({
+        //         url: `/projects/likes/comments/${id}`,
+        //         method: 'PUT',
+        //         body: rest
+        //     }),
             
-            invalidatesTags: ['Project'],
-        }),
-        deleteProject: builder.mutation({
-            query: (id) =>({
-                url: `/projects/${id}`,
-                method: 'DELETE'
-            }),
-            invalidatesTags: ['Project']
-        })
+        //     invalidatesTags: ['Project'],
+        // }),
+        // deleteProject: builder.mutation({
+        //     query: (id) =>({
+        //         url: `/projects/${id}`,
+        //         method: 'DELETE'
+        //     }),
+        //     invalidatesTags: ['Project']
+        // })
     })
 })
 
