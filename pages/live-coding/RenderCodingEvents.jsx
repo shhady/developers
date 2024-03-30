@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 export default function RenderCodingEvents({events, isSuccess,user}) {
     
   return (
-    <div>{isSuccess && events.length > 0 && <div>
+    <div>{isSuccess && events?.length > 0 && <div>
         <div className='listOfLiveSessionsTitles'>
           <div>name</div>
           <div>projectName</div>
