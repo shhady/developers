@@ -1,0 +1,125 @@
+.lightheader{
+    width: fit-content;
+    position: fixed;
+    top:0;
+    left: 0;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 50px 30px 50px;
+    border-right:1px solid gray;
+    z-index: 999;
+    background-color: white;
+}
+.darkheader{
+    width: fit-content;
+    position: fixed;
+    top:0;
+    left: 0;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 50px 30px 50px;
+    border-right:1px solid gray;
+    z-index: 999;
+    background-color: black;
+}
+.lightheaderMobile{
+    width: 100%;
+    position: fixed;
+    bottom:0;
+    left: 0;
+    height: 6vh;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 20px;
+    border-right:1px solid gray;
+    z-index: 999;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(97, 90, 146, 0.551);
+}
+.darkheaderMobile{
+    width: 100%;
+    position: fixed;
+    bottom:0;
+    left: 0;
+    height: 6vh;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 20px;
+    border-right:1px solid gray;
+    z-index: 999;
+    background-color: rgb(38, 38, 38);
+    box-shadow: 0 2px 5px rgba(97, 90, 146, 0.551);
+}
+.themeToggleButton{
+    position: fixed;
+    top: 15px;
+    right: 15px;
+}
+.logo{
+    position: fixed;
+    top: 15px;
+    left: 15px;
+}
+.logoAndMenu{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap:40px;
+}
+.logoAndMenuMobile{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    /* gap:40px; */
+}
+.iconsHeader {
+    margin-right: 10px;
+    font-size: 22px;
+}
+
+.iconsAndName{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+@media (max-width: 600px){
+    .headerNames{
+        display: none;
+    }
+    .header{
+        padding: 10px;
+    }
+    .logoAndMenu{
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: space-evenly;
+        
+    }
+    .header{
+        width: 100%;
+        position: fixed;
+        bottom:0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        padding: 30px 50px 30px 50px;
+        border-right:1px solid gray;
+        z-index: 999;
+    }
+    
+}

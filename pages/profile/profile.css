@@ -1,0 +1,81 @@
+
+.userDetails{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+}
+.avatarClass{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+.DetailsContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.userNameProfile{
+    text-align: start;
+    display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-bottom: 5px;
+        gap:3px
+}
+.buttonsProfile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:20px;
+    margin: 15px 0px;
+}
+.buttonProfiledark{
+    background-color: rgb(73, 72, 72);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.buttonProfilelight{
+    background-color: rgb(20, 20, 20);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@media (max-width: 600px) {
+  
+    .userDetails{
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .userNameProfile{
+        text-align: center;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    .DetailsContainer{
+       padding: 0px 30px;
+    }
+    .buttonProfiledark{
+        background-color: rgb(73, 72, 72);
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap:5px
+    }
+    .buttonProfilelight{
+        background-color: rgb(20, 20, 20);
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap:5px
+    }
+}

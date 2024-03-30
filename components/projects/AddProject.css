@@ -1,0 +1,47 @@
+
+.addProjectsIcon{
+    width: fit-content;
+    font-size:36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:5px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.dark{
+    background-color: #3c3c3c;
+    border: 1px solid white;
+    color: white;
+    padding: 0px 10px;
+}
+.addProjectForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:15px;
+    margin: 25px 0px;
+}
+@media (max-width: 600px) {
+    
+    .addProjectsIcon{
+        position:static; 
+        margin:20px auto;
+        font-size:24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap:5px;
+        height: 44px;
+    }
+    .dark{
+        background-color: #181a1a;
+        border: 1px solid white;
+        color: white;
+        border-radius: 10px;
+        padding: 0px 10px;
+    }
+}

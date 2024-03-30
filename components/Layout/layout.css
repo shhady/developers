@@ -1,0 +1,16 @@
+.GlobalLayout {
+    width: calc(100% - 215px);
+    margin-left: 215px;
+    min-height: 100dvh;
+    padding: 50px 15px 80px 15px;
+  }
+  
+  @media (max-width: 600px) {
+    .GlobalLayout {
+      width: 100%;
+      margin-left: 0px;
+      min-height: 100dvh;
+      padding-top: 50px;
+    }
+  }
+  

@@ -1,0 +1,88 @@
+.flex-center {
+    display: flex;
+    justify-content: center; /* Adjusts spacing between children */
+    align-items: center; /* Aligns children vertically */
+  }
+  .flex-space-between{
+    display: flex;
+    justify-content: space-between; /* Adjusts spacing between children */
+    align-items: center;
+    padding: 20px;
+    /* Aligns children vertically */
+  }
+  .formLiveCoding{
+    width: 50%;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center;
+    justify-content: center; */
+    gap:20px
+  }
+  .listOfLiveSessionsDesktop{
+    display: grid;
+grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr ;
+border: 1px solid black;
+padding: 10px;
+place-items: center;
+margin: 10px 0px;
+  }
+  .listOfLiveSessionsTitles{
+    display: grid;
+grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr ;
+border: 1px solid black;
+margin: 10px 0px;
+padding: 10px;
+  }
+  .pageFormLiveCoding{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .listOfLiveSessionsMobile{
+    display: none;
+  }
+  .joinButton{
+    min-width:120px;
+  }
+  .Active{
+    background-color: green;
+  }
+  .notActive{
+    background-color: red;
+  }
+
+
+@media (max-width:1010px) {
+    .formLiveCoding{
+        width: 100%;
+    }
+    .listOfLiveSessionsTitles{
+      display: none;
+    }
+    .listOfLiveSessionsDesktop{
+      display: none;
+    }
+    .listOfLiveSessionsMobile{
+      display: block;
+      display: grid;
+      grid-template-columns:1fr 1fr;
+      padding: 5px;
+      border: 1px solid black;
+      margin: 10px 0px;
+    }
+    .flex-start{
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+    .joinButton{
+      width: 100%;
+    }
+    
+    
+}
