@@ -14,7 +14,7 @@ export default function RenderCodingEvents({events, isSuccess,user}) {
           <div>time</div>
           <div>join</div>
         </div>
-        {events.map((liveSession)=>{
+        {events?.map((liveSession)=>{
           return <div className='listOfLiveSessionsDesktop' key={liveSession._id}>
             <div className='flex-center'>{liveSession.user.userName}</div>
             <div className='flex-center'>{liveSession.projectName}</div>
@@ -25,7 +25,7 @@ export default function RenderCodingEvents({events, isSuccess,user}) {
             {liveSession?.user._id !== user?._id && <div>{liveSession.active ? <Link to={`/live-coding/${liveSession._id}`}><button className='joinButton Active'>Join</button></Link>:<button className='joinButton notActive'>Inactive</button>}</div>}
           </div>
         })}
-         {events.map((liveSession)=>{
+         {events?.map((liveSession)=>{
           return <div className='listOfLiveSessionsMobile' key={liveSession._id}>
             <div>
             <div className='flex-start'><h6 className='liveSessionsTitlesHiddenDesktop'>name: </h6>{liveSession.user.userName}</div>
