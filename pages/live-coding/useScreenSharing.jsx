@@ -1,45 +1,32 @@
 import { useCallback, useContext } from 'react';
 import io from 'socket.io-client';
-import { AuthContext } from '../../components/context/userContext'; // Adjust the path as necessary
+import { AuthContext } from './context/AuthContext'; // Adjust according to your project structure
 
-const backendURL = import.meta.env.VITE_URL_BACKEND_DEVELOPMENT;
+const backendURL = process.env.REACT_APP_BACKEND_URL; // Adjust if you use a different env variable name
 const socket = io(backendURL);
 
-const useScreenSharing = (setStream, setLocalStream) => {
-  const { user } = useContext(AuthContext);
-  const peerConnection = new RTCPeerConnection();
+const useScreenSharing = (setLocalStream) => {
+    const { user } = useContext(AuthContext);
 
-  const shareScreen = useCallback(async () => {
-    try {
-      const stream = await navigator.mediaDevices.getDisplayMedia({ video: true });
-      setLocalStream(stream);
-      stream.getTracks().forEach((track) => peerConnection.addTrack(track, stream));
+    const peerConnection = new RTCPeerConnection();
 
-      const offer = await peerConnection.createOffer();
-      await peerConnection.setLocalDescription(new RTCSessionDescription(offer));
+    const shareScreen = useCallback(async () => {
+        const stream = await navigator.mediaDevices.getDisplayMedia({ video: true });
+        setLocalStream(stream);
+        stream.getTracks().forEach(track => peerConnection.addTrack(track, stream));
 
-      socket.emit('startScreenShare', { userId: user?.userId, offer });
-    } catch (error) {
-      console.error('Error sharing screen:', error);
-    }
-  }, [setLocalStream, peerConnection, user?.userId]);
+        const offer = await peerConnection.createOffer();
+        await peerConnection.setLocalDescription(offer);
 
-  // Adjusted to handle receiving a screen sharing stream
-  socket.on('offer', async (data) => {
-    if (data.userId !== user?.userId) {
-      await peerConnection.setRemoteDescription(new RTCSessionDescription(data.offer));
-      const answer = await peerConnection.createAnswer();
-      await peerConnection.setLocalDescription(new RTCSessionDescription(answer));
+        socket.emit('startScreenShare', { offer, userId: user.id });
+    }, [setLocalStream, user.id]);
 
-      socket.emit('answer', { answer, to: data.userId });
-    }
-  });
+    // Handle receiving a stream
+    peerConnection.ontrack = event => {
+        setLocalStream(event.streams[0]);
+    };
 
-  socket.on('answer', async (answer) => {
-    await peerConnection.setRemoteDescription(new RTCSessionDescription(answer));
-  });
-
-  return { shareScreen };
+    return { shareScreen };
 };
 
 export default useScreenSharing;
