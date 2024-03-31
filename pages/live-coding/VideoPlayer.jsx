@@ -7,6 +7,6 @@ export default function VideoPlayer({stream}) {
     },[stream])
     console.log(stream);
   return (
-    <video ref={videoRef} autoPlay muted={true}/>
+    <video ref={videoRef} autoPlay muted={true} style={{width:'100%', height:"50dvh"}}/>
   )
 }
