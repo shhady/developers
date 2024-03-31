@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import useScreenSharing from './useScreenSharing'; // Adjust path as necessary
 import VideoStream from './VideoStream'; // Make sure this component is implemented as previously described
 import Layout from '../../components/Layout/Layout';
+import Chat from './Chat';
 
 const ScreenSharingComponent = () => {
     const [stream, setStream] = useState(null);
@@ -20,7 +21,7 @@ const ScreenSharingComponent = () => {
                 )}
             </div>
             <div>
-                <Chat />
+            <Chat />
             </div>
         </Layout>
     );
