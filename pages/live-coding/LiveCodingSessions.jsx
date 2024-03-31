@@ -4,6 +4,7 @@ import Layout from '../../components/Layout/Layout'
 import SearchComponent from '../../components/searchFolder/SearchComponent'
 import "./LiveCodingtime.css"
 import CodingSessionsList from './CodingSessionsList'
+
 export default function LiveCodingSessions() {
     const [searchTerm, setSearchTerm] = useState('')
   return (
@@ -16,6 +17,7 @@ export default function LiveCodingSessions() {
         <div>
             <CodingSessionsList />
         </div>
+        
         </Layout>
   )
 }

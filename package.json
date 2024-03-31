@@ -17,6 +17,7 @@
     "@mui/material-next": "^6.0.0-alpha.126",
     "@mui/x-date-pickers": "^7.0.0",
     "@reduxjs/toolkit": "^2.1.0",
+    "@stream-io/video-react-sdk": "^0.5.8",
     "axios": "^1.6.5",
     "blueimp-load-image": "^5.16.0",
     "dayjs": "^1.11.10",

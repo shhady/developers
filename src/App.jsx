@@ -29,7 +29,7 @@ import ScreenSharingComponent from '../pages/live-coding/ScreenSharingComponent'
         <Route path='/auth' element={<Login/>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/projects' element={<Projects/>}/>
-        <Route path='/live-coding' element={<ScreenSharingComponent/>}/>
+        <Route path='/live-coding' element={<LiveCodingSessions/>}/>
         <Route path='/live-coding/:id' element={<LiveCodingSession />}/>
         <Route path='/projects/:id' element={<ProjectDetails/>}/>
         <Route path='/profile/:id' element={<Profile/>}/>
