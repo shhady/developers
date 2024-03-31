@@ -1,6 +1,6 @@
 import { useCallback, useContext } from 'react';
 import io from 'socket.io-client';
-import { AuthContext } from './context/AuthContext'; // Adjust according to your project structure
+import { AuthContext } from '../../components/context/userContext'; // Adjust according to your project structure
 
 const backendURL = process.env.REACT_APP_BACKEND_URL; // Adjust if you use a different env variable name
 const socket = io(backendURL);
