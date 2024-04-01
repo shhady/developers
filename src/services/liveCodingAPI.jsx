@@ -45,11 +45,12 @@ export const liveCodingApi = createApi({
                 method: 'POST',
                 body: LiveCodingEvent
             }),
+       
             invalidatesTags: ['LiveCoding'], 
             transformResponse: (response, meta, arg) => {
                 return response;
             }
-        }),
+        }), 
         updateLiveCodingEvent: builder.mutation({
             query: ({_id, ...rest}) =>({
                 url: `/update-live-coding-event/${_id}`,
@@ -58,6 +59,17 @@ export const liveCodingApi = createApi({
             }),
             invalidatesTags: ['LiveCoding']
         }),
+        createLiveCodingToken: builder.mutation({
+            query: (userId) =>({
+                url: `/generate-live-coding-token/${userId}`,
+                method: 'POST',
+            }),
+            invalidatesTags: ['LiveCoding'], 
+            transformResponse: (response, meta, arg) => {
+                console.log(response);
+                return response;
+            }
+            }),
         // updateProjectInteraction: builder.mutation({
         //     query: ({id, ...rest}) =>({
         //         url: `/projects/likes/comments/${id}`,
@@ -82,7 +94,8 @@ export const {
     useLiveCodingEventsByOwnerQuery,
      useLiveCodingEventQuery,
       useCreateLiveCodingEventMutation, 
-      useUpdateLiveCodingEventMutation
+      useUpdateLiveCodingEventMutation,
+      useCreateLiveCodingTokenMutation,
     //   useUpdateProjectMutation,
     //    useDeleteProjectMutation,
     //     useUpdateProjectInteractionMutation
