@@ -35,7 +35,7 @@ export default function RenderCodingEvents({events, isSuccess,user}) {
             <div>
             <div className='flex-start'><h6 className='liveSessionsTitlesHiddenDesktop'>date: </h6>{liveSession.date}</div>
             <div className='flex-start'><h6 className='liveSessionsTitlesHiddenDesktop'>time: </h6>{liveSession.time}</div>
-            {liveSession?.user._id === user?._id && <Link to={`/live-coding/${liveSession._id}`}><button className='joinButton'>Start</button></Link>}
+            {liveSession?.user._id === user?._id && <Link to={`/live-coding/${liveSession._id}`}><button className='joinButton'>{liveSession.active ? 'Join': 'Start'}</button></Link>}
             {liveSession?.user._id !== user?._id && <div>{liveSession.active ? <Link to={`/live-coding/${liveSession._id}`}><button className='joinButton Active'>Join</button></Link>:<button className='joinButton notActive'>Inactive</button>}</div>}
             {/* <Link to={liveSession.active ? `/live-coding/${liveSession._id}`: ''}>{liveSession?.user._id === user?._id ? <button className='joinButton'>Start</button>:<button className={liveSession.active ? 'joinButton Active' : 'joinButton notActive'}>{liveSession.active ? "Join" : "Inactive"}</button>}</Link>  */}
             </div>

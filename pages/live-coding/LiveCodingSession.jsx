@@ -48,7 +48,7 @@ export default function LiveCodingSession() {
     setCall(call)
 
 return ()=>{
-    call.leave();
+    // call.leave();
     client.disconnectUser();
 
 }

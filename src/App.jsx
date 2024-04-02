@@ -13,7 +13,6 @@ import Profile from '../pages/profile/Profile';
 import ScrollToTop from '../components/spinner/ScrollToTop';
 import LiveCodingSessions from '../pages/live-coding/LiveCodingSessions';
 import LiveCodingSession from '../pages/live-coding/LiveCodingSession';
-import ScreenSharingComponent from '../pages/live-coding/ScreenSharingComponent';
 
  function App() {
  
