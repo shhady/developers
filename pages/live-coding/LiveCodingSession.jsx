@@ -70,7 +70,7 @@ return ()=>{
       return () => {
         updateLive(false); // Cleanup to set active to false when component unmounts
       };
-    }, [data, user?._id, updateLiveCodingEvent]);
+    }, [data, user?._id]);
   return (
     <Layout>
         <div className='liveSessionStart'>
