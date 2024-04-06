@@ -20,8 +20,9 @@ export default function LiveCodingSession() {
    const navigate=useNavigate()
     // const token = user?.token;
     // const token = import.meta.env.VITE_TOKEN_STREAM
-    const userId = user?._id
-    
+    const userId = user?._id;
+  
+        // console.log(CallParticipantsList);
   useEffect(()=>{
     if(!user) return;
     if(!data) return;
@@ -44,7 +45,7 @@ export default function LiveCodingSession() {
     
     })
     setClient(client)
-    const call =client.call('default', data._id);
+    const call =client.call('default',id);
     call.join({create: true})
     setCall(call)
 
@@ -70,7 +71,7 @@ return ()=>{
       return () => {
         updateLive(false); // Cleanup to set active to false when component unmounts
       };
-    }, [data, user?._id]);
+    }, [data, user?._id, updateLiveCodingEvent]);
   return (
     <Layout>
         <div className='liveSessionStart'>
@@ -78,12 +79,12 @@ return ()=>{
         {client && call &&  <StreamVideo client={client}>
             <StreamTheme style={{position:'relative'}}>
         <StreamCall call={call}>
-            <SpeakerLayout />
-            <CallControls onLeave={async () => {
+           <SpeakerLayout />
+             <CallControls onLeave={async () => {
                     await updateLive(false); // Update live status before navigating away
                     navigate('/live-coding');
                   }}/>
-            <CallParticipantsList/>
+                <CallParticipantsList/>
         </StreamCall>
         </StreamTheme>
     </StreamVideo>}
