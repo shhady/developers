@@ -9,7 +9,7 @@ const RenderCodingEvents = React.memo(({ events, isSuccess, user }) => {
         <div className='listOfLiveSessionsTitles'>
           <div>name</div>
           <div>projectName</div>
-          <div>lang</div>
+          <div>tags</div>
           <div>date</div>
           <div>time</div>
           <div>join</div>
