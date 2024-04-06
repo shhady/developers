@@ -30,9 +30,9 @@ export default function CodingSessionsList() {
   return (
     <div>
      {myData?.length > 0 && <><h2>My Coding Events</h2>
-      <RenderCodingEvents events={myData} isSuccess={myIsSuccess} user={user}/></> }
+      <RenderCodingEvents events={myData} isSuccess={true} user={user}/></> }
       {filteredData?.length > 0 && <><h2>Coding Events</h2>
-      <RenderCodingEvents events={filteredData} isSuccess={isSuccess} user={user}/></>}
+      <RenderCodingEvents events={filteredData} isSuccess={true} user={user}/></>}
      </div>
   )
 }

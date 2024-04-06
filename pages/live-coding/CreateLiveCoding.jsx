@@ -18,10 +18,11 @@ const CreateLiveCoding = () => {
     const [createLiveCodingEvent] = useCreateLiveCodingEventMutation()
   const [liveSession, setLiveSession] = useState({
     projectName: '',
-    language: '',
+    tags: '',
     description: '',
     date:'',
     time:'',
+    github:''
   });
   const {theme} = useContext(ThemeContext);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -68,26 +69,12 @@ const CreateLiveCoding = () => {
     borderRadius: '10px',
   };
   
-  const inputStyle ={
-    borderRadius:'10px',
-    bgcolor: theme === 'light' ? 'white' : 'rgba(255, 255, 255, 0.16)',
-    color: theme === 'light' ? 'black' : 'white',
-    // border: theme === 'light' ? '1px solid white' : '1px solid white',
-    '& input': { // Targeting the input element specifically
-      color: theme === 'light' ? 'black' : 'white', // Changing the text color
-  },// Corrected property for text color
-    // If you need to change the border color or other properties, you can add them here
-    '& label': { // Styling the label
-        color: theme === 'light' ? 'black' : 'white',
-    },
-    '& .MuiInput-underline:before': { // Styling the underline with normal state
-        borderBottomColor: theme === 'light' ? 'black' : 'white',
-    },
-    '& .MuiInput-underline:hover:not(.Mui-disabled):before': { // Styling the underline on hover
-        borderBottomColor: theme === 'light' ? 'black' : 'white', // use your theme colors
-    },
-  }
-
+  const inputStyle = {
+    borderRadius: '10px',
+    backgroundColor: 'rgb(66, 66, 66)',
+    color: 'white',
+  };
+  
   return (
     <>
         <button onClick={handleOpen}><FaCirclePlus /></button>
@@ -104,22 +91,37 @@ const CreateLiveCoding = () => {
           <LocalizationProvider dateAdapter={AdapterDayjs}>
           
             
-            <TextField sx={inputStyle} fullWidth label="Project Name" name="projectName" onChange={handleChange} />
+            <input style={inputStyle} placeholder='Project Name' label="Project Name" name="projectName" onChange={handleChange} />
            
-            <TextField sx={inputStyle}  fullWidth label="Language" name="language" onChange={handleChange} />
+            <input style={inputStyle} placeholder='Tags: ex. js, react, node' label="tags" name="tags" onChange={handleChange} />
            
-            <TextField sx={inputStyle} fullWidth label="Description" name="description" onChange={handleChange} />
-
-            <div onClick={() => setShow(show === 'date' ? null : 'date')} style={{display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
+            <input style={inputStyle}  placeholder="Description" name="description" onChange={handleChange} />
+            <input style={inputStyle}  placeholder="Github link" name="github" onChange={handleChange} />
+            {/* <div onClick={() => setShow(show === 'date' ? null : 'date')} style={{display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
              
-              <TextField sx={inputStyle} fullWidth label={liveSession.date ? '':'Date'} name="date" value={liveSession.date} onClick={() => setShow(show === 'date' ? null : 'date')} />
+              <input sx={inputStyle} type='date' fullWidth label={liveSession.date ? '':'Date'} name="date" value={liveSession.date} onClick={() => setShow(show === 'date' ? null : 'date')} />
               {show === 'date' && <DateCalendar sx={inputStyle}  onChange={(newValue) => { setLiveSession({...liveSession ,date : newValue.format('ddd YYYY-MM-DD')}); setShow(null); }} />}
-            </div>
-
-            <div onClick={() => setShow(show === 'time' ? null : 'time')}>
-              <TextField sx={inputStyle}  fullWidth label={liveSession.time ? '':'Time'} name="time" value={liveSession.time} onClick={() => setShow(show === 'time' ? null : 'time')} />
+            </div>  */}
+            <input
+                type="date"
+                placeholder="WED,  JAN 22"
+                value={liveSession.date}
+                onChange={(e) => setLiveSession({...liveSession ,date:e.target.value})}
+                required
+                style={inputStyle}
+              />
+              <input
+                type="time"
+                placeholder="09:00 PM GMT+2"
+                value={liveSession.time}
+                onChange={(e) => setLiveSession({...liveSession ,time:e.target.value})}
+                required
+                style={inputStyle}
+              />
+            {/* <div onClick={() => setShow(show === 'time' ? null : 'time')}>
+              <input sx={inputStyle}  fullWidth label={liveSession.time ? '':'Time'} name="time" value={liveSession.time} onClick={() => setShow(show === 'time' ? null : 'time')} />
               {show === 'time' && <DigitalClock sx={inputStyle}  onChange={(newValue) => { setLiveSession({...liveSession , time:newValue.format('HH:mm')}); setShow(null); }} />}
-            </div>
+            </div> */}
           </LocalizationProvider>
           <input type="submit" />
         </form>

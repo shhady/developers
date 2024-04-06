@@ -1,10 +1,7 @@
 import { createContext, useEffect, useState } from 'react';
 const AuthContext = createContext();
 import axios from 'axios';
-const backendURL = import.meta.env.VITE_URL_BACKEND_DEVELOPMENT;
-import io from 'socket.io-client';
-// Ensure you connect to the same endpoint as your server
-const socket = io(backendURL);
+const backendURL = import.meta.env.VITE_URL_BACKEND_DEVELOPMENT
 const AuthProvider = ({ children }) => {
   
  const [user, setUser] = useState(null);
@@ -14,32 +11,21 @@ const AuthProvider = ({ children }) => {
     setUser(JSON.parse(localStorage.getItem('user')))
  },[])
 
- const login = async (userData) => {
-    try {
-        // Attempt to log in via your API
-        const response = await axios.post(`${backendURL}/api/users/login`, {
-            email: userData.email.toLowerCase(),
-            password: userData.password
-        });
-
-        // Store the received token in local storage
-        localStorage.setItem('user', JSON.stringify(response.data));
-        localStorage.setItem('token', JSON.stringify(response.data.token));
-        setUser(response.data); // Assuming you have a setUser function to update user context/state
-
-        // Listen for token updates (e.g., when logging in from another device)
-        socket.on('updateToken', (newToken) => {
-            localStorage.setItem('token', JSON.stringify(newToken.token)); // Update the token in local storage
-            // Optionally, update any application state or context that stores the token
-            // This could involve calling setUser or similar again, depending on your state management
-        });
-
-        return "loginSuccess";
-    } catch (error) {
-        console.error("Login error:", error.response?.data || error.message);
-        setErrorM(error.response?.data || "An unexpected error occurred");
-    }
-};
+    const login = async (userData) => {
+        try {
+            const response = await axios.post(`${backendURL}/api/users/login`, {
+                email:userData.email.toLowerCase(),
+                password:userData.password
+            })
+           localStorage.setItem('user', JSON.stringify(response.data));
+           localStorage.setItem('token', JSON.stringify(response.data.token));
+         setUser(response.data);
+         return "loginSuccess"
+        } catch (error) {
+           
+            setErrorM(error.response.data);
+        }
+    };
 
     const logout = () => {
     setUser(null);

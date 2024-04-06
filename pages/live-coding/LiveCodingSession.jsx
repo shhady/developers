@@ -4,6 +4,7 @@ import { useCreateLiveCodingTokenMutation, useLiveCodingEventQuery, useUpdateLiv
 import { useParams,useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../components/context/userContext';
 import "@stream-io/video-react-sdk/dist/css/styles.css"
+import "./LiveSessionCoding.css"
 import { CallControls, CallParticipantsList, CallingState, ParticipantView, SpeakerLayout, StreamCall, StreamTheme, StreamVideo, StreamVideoClient, useCall, useCallStateHooks } from '@stream-io/video-react-sdk';import Chat from './Chat'
 const apiKey = import.meta.env.VITE_API_KEY_STREAM
 
@@ -20,7 +21,7 @@ export default function LiveCodingSession() {
     // const token = user?.token;
     // const token = import.meta.env.VITE_TOKEN_STREAM
     const userId = user?._id
-    console.log(data);
+    
   useEffect(()=>{
     if(!user) return;
     if(!data) return;
@@ -53,35 +54,35 @@ return ()=>{
 
 }
   },[user,data])
- 
-  useEffect(() => {
-    const updateLive = async (isActive) => {
-      // Ensure `data` is loaded and the current user matches the event user
-      if (data?.user?._id === user?._id && data?.active !== isActive) {
+
+  const updateLive = async (isActive) => {
+    if (data?.user?._id === user?._id && data?.active !== isActive) {
+      try {
         await updateLiveCodingEvent({ ...data, active: isActive });
+      } catch (error) {
+        console.error("Failed to update live coding event:", error);
       }
-    };
+    }
+  };
+  useEffect(() => {
+      updateLive(true); // Set active to true when component mounts
 
-    // Set active to true when the component mounts
-    updateLive(true);
-
-    // Cleanup function to set active to false when the component unmounts
-    return () => {
-      updateLive(false);
-    };
-  // Include all variables used in the effect that might change over time
-  }, [ data,user?._id, updateLiveCodingEvent]);
-
+      return () => {
+        updateLive(false); // Cleanup to set active to false when component unmounts
+      };
+    }, [data, user?._id, updateLiveCodingEvent]);
   return (
     <Layout>
-       <div>
+        <div className='liveSessionStart'>
+       <div style={{width:"66%"}}>
         {client && call &&  <StreamVideo client={client}>
             <StreamTheme style={{position:'relative'}}>
         <StreamCall call={call}>
             <SpeakerLayout />
-            <CallControls onLeave={()=>{
-                navigate('/live-coding')
-            }}/>
+            <CallControls onLeave={async () => {
+                    await updateLive(false); // Update live status before navigating away
+                    navigate('/live-coding');
+                  }}/>
             <CallParticipantsList/>
         </StreamCall>
         </StreamTheme>
@@ -91,64 +92,8 @@ return ()=>{
         <div>
             <Chat/>
         </div>
+        </div>
     </Layout>
   )
 }
 
-// export const MyUILayout = ()=>{
-//     const call = useCall()
-
-//     const {useCallCallingState, useParticipantCount, useLocalParticipant, useRemoteParticipants} = useCallStateHooks();
-//     const callingState = useCallCallingState()
-//     const participantsCount = useParticipantCount()
-//     const localParticipant = useLocalParticipant()
-//     const remoteParticipants = useRemoteParticipants()
-//     if(callingState !== CallingState.JOINED){
-//         return <div>loading ...</div>
-//     }
-//     return(
-//         <div>
-//             <StreamTheme style={{position:'relative'}}>
-            
-//             <MyParticipantList participants={remoteParticipants}/>
-//             <MyFloatingLocalParticipant participants={localParticipant}/>
-//             </StreamTheme>
-//         </div>
-//     )
-// }
-
-// export const MyParticipantList = ({participants})=>{
-//     console.log(participants);
-//     return (
-//         <div style={{
-//             display: 'flex',
-//             gap:'8px',
-//             width: '100%',
-//         }}>
-//              {participants?.map((participant)=>{
-//                 <div style={{width:"100%", aspectRatio:"13/2"}}>
-//                         <ParticipantView 
-//                         muteAudio
-//                         participant={participant}
-//                         key={participant.sessionId}
-//                         />
-//                     </div>}
-//             )} 
-//         </div>
-//     )
-// }
-
-// export const MyFloatingLocalParticipant = ({participant}) => {
-//     return (
-//         <div style={{
-//             position:"absolute",
-//             top:'15px',
-//             left:'15px',
-//             width:"240px",
-//             height:"135px",
-//             borderRadius:"12px"
-//         }}>
-//             {participant && <ParticipantView muteAudio participant={participant}/>}
-//         </div>
-//     )
-// }
